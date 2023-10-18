@@ -8,14 +8,14 @@ const pets = [
       imageUrl: "http://kittentoob.com/wp-content/uploads/2015/06/funny-cat-with-a-towel.jpg",
     },
     {
-        id: 2,
+      id: 2,
       name: "Trouble",
       color: "Brown",
       specialSkill: "Just picks the tomatoes off of a sandwich instead of requesting a whole new sandwich.",
       type: "dino",
       imageUrl: "http://www.jozilife.co.za/wp-content/uploads/The-Dino-Expo.jpg",
     },
-    {
+    {     
       id: 3,
       name: "Whiskers",
       color: "Yellow",
@@ -240,3 +240,74 @@ const pets = [
       imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
     }
   ];
+
+const renderToDom = (array) => {
+
+    let domString = ""
+
+    for(object of array){
+      domString += `<div class="card" style="width: 18rem;">
+      <div class="card-body"> 
+        <div class="card-header">${object.name}
+        </div>
+        <img src=${object.imageUrl} class="card-img-top" alt="..."> 
+        <h5 class="card-title">${object.color}</h5>
+        <p class="card-text">${object.specialSkill}</p>
+        <div class="card-footer text-body-secondary">${object.type}
+        </div> 
+      </div>
+    </div>`
+    }
+
+    const app = document.querySelector("#app")
+
+    app.innerHTML = domString
+}
+  
+  
+
+renderToDom(pets)
+
+const dogButton = document.querySelector("#dog")
+const catButton = document.querySelector("#cat")
+const dinoButton = document.querySelector('#dino') 
+
+const filter1 = () => {
+    let dogArray = []
+
+    for (pet of pets){
+      if(pet.type === "dog"){
+        dogArray.push(pet)
+      }
+    }
+    renderToDom(dogArray)
+  }
+
+
+const filter2 = () => {
+    let catArray = []
+
+    for(pet of pets){
+      if (pet.type === "cat"){
+        catArray.push(pet)
+      }
+    }
+    renderToDom(catArray)
+  }
+
+
+
+  const filter3 = () => {
+    let dinoArray = []
+
+    for(pet of pets){
+      if (pet.type === "dino"){
+        dinoArray.push(pet)
+      }
+    }
+    renderToDom(dinoArray)
+  }
+
+ dogButton.addEventListener ('click', filter1)
+catButton.addEventListener ('click', filter2)
+dinoButton.addEventListener ('click', filter3)

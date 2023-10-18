@@ -1,3 +1,28 @@
 body {
   background-color: aliceblue;
+  width: fit-content;
+}
+
+#app {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 50px;
+}
+
+.card-title {
+ 
+}
+
+img {
+  padding: 10px;
+  border: 1px lightgrey solid;
+  margin-top: 10px;
+  max-width: 200px;
+  margin: 10px auto; 
+}
+
+button {
+  justify-content: space-evenly;
 }

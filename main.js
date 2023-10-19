@@ -271,6 +271,7 @@ renderToDom(pets)
 const dogButton = document.querySelector("#dog")
 const catButton = document.querySelector("#cat")
 const dinoButton = document.querySelector('#dino') 
+const allPetsButton = document.querySelector("#allPets")
 
 const filter1 = () => {
     let dogArray = []
@@ -296,7 +297,6 @@ const filter2 = () => {
   }
 
 
-
   const filter3 = () => {
     let dinoArray = []
 
@@ -308,6 +308,30 @@ const filter2 = () => {
     renderToDom(dinoArray)
   }
 
- dogButton.addEventListener ('click', filter1)
+  const filter4 = () => {
+    let petArray = []
+
+    for(pet of pets){
+      if (pet.type === "dog" || "cat" || "dino"){
+        petArray.push(pet)
+      }
+    }
+    renderToDom(petArray)
+  }
+
+dogButton.addEventListener ('click', filter1)
 catButton.addEventListener ('click', filter2)
 dinoButton.addEventListener ('click', filter3)
+allPetsButton.addEventListener ('click', filter4)
+
+// {/* <input class="form-control" type="text" placeholder="Name" aria-label="default input example">
+// <input class="form-control" type="text" placeholder="Color" aria-label="default input example">
+// <input class="form-control" type="text" placeholder="Pet Type" aria-label="default input example">
+// <div class="mb-3">
+//   <label for="exampleFormControlTextarea1" class="form-label">Pet Fun Fact</label>
+//   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+// </div>
+// <div class="mb-3">
+//   <label for="formFile" class="form-label">Pet Photo</label>
+//   <input class="form-control" type="file" id="formFile">
+// </div> */}

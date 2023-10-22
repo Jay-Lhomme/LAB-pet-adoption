@@ -360,21 +360,6 @@ form.addEventListener ('submit', createPet)
 app.addEventListener("click", deletePet)
 
 
-// const deletePet = (event) => {
-
-//   if (event.target.id.includes("delete")){
-    
-//     const [, id] = event.target.id.split("--")
-
-//     const index = pets.findIndex(object => object.id === Number(id))
-
-//     pets.splice(index, 1)
-
-//     renderToDom(pets)
-//   }
-// }
-
-
 
 // *Multi-button single filter function attempt
 

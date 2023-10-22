@@ -241,6 +241,10 @@ const pets = [
     }
   ];
 
+
+const app = document.querySelector("#app")
+
+  
 const renderToDom = (array) => {
 
     let domString = ""
@@ -254,25 +258,22 @@ const renderToDom = (array) => {
           <h5 class="card-title">${object.color}</h5>
           <p class="card-text">${object.specialSkill}</p>
         </div> 
-        <div class="card-footer">${object.type}
+        <div class=${object.type} class="card-footer" >${object.type}
         </div>
-        <a href="#" class="btn btn-danger">Delete</a>
+        <a href="#" class="btn btn-outline-danger" id="delete--${object.id}">Delete</a>
       </div>`
     }
-
-    const app = document.querySelector("#app")
-
     app.innerHTML = domString
 }
-  
-  
-
 renderToDom(pets)
+
 
 const dogButton = document.querySelector("#dog")
 const catButton = document.querySelector("#cat")
 const dinoButton = document.querySelector('#dino') 
 const petsButton = document.querySelector("#pets")
+const form = document.querySelector('form')
+
 
 const filter1 = () => {
     let dogArray = []
@@ -298,41 +299,91 @@ const filter2 = () => {
   }
 
 
-  const filter3 = () => {
-    let dinoArray = []
+const filter3 = () => {
+  let dinoArray = []
 
-    for(pet of pets){
-      if (pet.type === "Dino"){
-        dinoArray.push(pet)
-      }
+  for(pet of pets){
+    if (pet.type === "Dino"){
+      dinoArray.push(pet)
     }
-    renderToDom(dinoArray)
   }
+  renderToDom(dinoArray)
+}
 
-  const filter4 = () => {
-    let petArray = []
+const filter4 = () => {
+   let petArray = []
 
-    for(pet of pets){
-      if (pet.type === "Dog" || "Cat" || "Dino"){
-        petArray.push(pet)
-      }
+   for(pet of pets){
+     if (pet.type === "Dog" || "Cat" || "Dino"){
+      petArray.push(pet)
     }
-    renderToDom(petArray)
   }
+  renderToDom(petArray)
+}
+
+
+const createPet = (e) => {
+    e.preventDefault()
+
+  const newPetObject ={
+     id: pets.length + 1,
+     name: document.querySelector('#petName').value,
+     color: document.querySelector('#petColor').value,
+     specialSkill: document.querySelector('#petSpecialSkill').value,
+     type: document.querySelector('#petType').value,
+    imageUrl: document.querySelector('#petImageUrl').value
+   }
+   pets.push(newPetObject)
+   renderToDom(pets)
+   form.reset()
+}
+
+const deletePet = (event) => {
+
+  if (event.target.id.includes("delete")){
+    
+    const [, id] = event.target.id.split("--")
+
+    const index = pets.findIndex(object => object.id === Number(id))
+
+    pets.splice(index, 1)
+
+    renderToDom(pets)
+  }
+}
 
 dogButton.addEventListener ('click', filter1)
 catButton.addEventListener ('click', filter2)
 dinoButton.addEventListener ('click', filter3)
 petsButton.addEventListener ('click', filter4)
+form.addEventListener ('submit', createPet)
+app.addEventListener("click", deletePet)
 
-// {/* <input class="form-control" type="text" placeholder="Name" aria-label="default input example">
-// <input class="form-control" type="text" placeholder="Color" aria-label="default input example">
-// <input class="form-control" type="text" placeholder="Pet Type" aria-label="default input example">
-// <div class="mb-3">
-//   <label for="exampleFormControlTextarea1" class="form-label">Pet Fun Fact</label>
-//   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-// </div>
-// <div class="mb-3">
-//   <label for="formFile" class="form-label">Pet Photo</label>
-//   <input class="form-control" type="file" id="formFile">
-// </div> */}
+
+
+// *Multi-button single filter function attempt
+
+// const filter1 = () => {
+//   let petArray = []
+
+//   for(pet of pets){
+//     if (pet.type === "Dog"){
+//       petArray.push(pet)
+//     } else if (pet.type === "Cat"){
+//       petArray.push(pet)
+//     } else (pet.type === "Dino")
+//       petArray.push(pet)
+//     }
+//   renderToDom(petArray)
+//   }
+
+
+// const filter2 = () => {
+//   let allArray = []
+ 
+//   for (pet of pets){
+//   (pet.type === "Dog" ||"Cat" || "Dino")
+//       allArray.push(pet)
+//     }
+//     renderToDom(allArray)
+//   }

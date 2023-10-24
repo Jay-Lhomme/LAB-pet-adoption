@@ -13,6 +13,28 @@ body {
   row-gap: 30px;
   column-gap: 80px;
 }
+.title {
+  display: flex;
+  font-style: italic;
+  justify-content: center;
+  flex-direction: column-reverse;
+}
+
+#adopt {
+  display: flex;
+  justify-content: center;
+}
+
+#submit {
+  display: flex;
+  justify-content: center;
+}
+
+
+.card {
+  border: grey solid 2px;
+  border-radius: 3%;
+}
 
 img {
   padding: 10px;
@@ -39,8 +61,8 @@ form {
 }
 
 #aap {
-font-weight: bold;
-text-align: center;
+  font-weight: bold;
+  text-align: center;
 }
 
 #submit {

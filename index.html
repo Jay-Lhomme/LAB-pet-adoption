@@ -8,25 +8,27 @@
 </head>
 <body>
 
+<div id="adopt">
   <form>
     <div id="aap" class="card-header">ADD A PET CARD
     </div>
-    <input class="form-control" type="text" id="petName" placeholder="Name" aria-label="default input example">
-    <input class="form-control" type="text" id="petColor" placeholder="Color" aria-label="default input example">
-    <input class="form-control" type="text" id="petSpecialSkill"  placeholder="Special Skill" aria-label="default input example">
-    <input class="form-control" type="text" id="petImageUrl"  placeholder="Image Url" aria-label="default input example">
+    <input class="form-control" type="text" id="petName" placeholder="Name" aria-label="default input example" required>
+    <input class="form-control" type="text" id="petColor" placeholder="Color" aria-label="default input example" required>
+    <input class="form-control" type="text" id="petSpecialSkill"  placeholder="Special Skill" aria-label="default input example" required>
+    <input class="form-control" type="text" id="petImageUrl"  placeholder="Image Url" aria-label="default input example" required>
     <div class="input-group mb-3">
       <label class="input-group-text" for="petType">Type
       </label>
-      <select class="form-select" id="petType">
-        <option selected>Pick a Pet</option>
+      <select class="form-select" id="petType" required>
+        <option selected></option>
         <option value="Dog">Dog</option>
         <option value="Cat">Cat</option>
         <option value="Dino">Dino</option>
       </select>
     </div>
-    <input id="submit" class="btn btn-info" type="submit" value="Submit">
+    <input id="submit" class="btn btn-info" type="submit" value="Submit" required>
   </form>
+</div>
 
   <div class="d-grid gap-2 d-md-flex justify-content-md-center">
     <button type="button" id="dog" class="btn btn-primary">Dogs</button>

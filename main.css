@@ -28,6 +28,9 @@ body {
 #submit {
   display: flex;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 
@@ -65,31 +68,25 @@ form {
   text-align: center;
 }
 
-#submit {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-
 .Dog {
-  background-color: burlywood;
-  color: rgb(102, 82, 55);
+  background-color: steelblue;
+  color: rgb(135, 196, 247);
   height: 50px;
   padding-top: 15px;
   font-weight: bold;
 }
 
 .Cat {
-  background-color: lightsalmon;
-  color:rgb(156, 96, 73);
+  background-color: orange;
+  color:rgb(247, 217, 160);
   height: 50px;
   padding-top: 15px;
   font-weight: bold;
 }
 
 .Dino {
-  background-color: lightgreen;
-  color: rgb(74, 154, 74);
+  background-color: forestgreen;
+  color: rgb(54, 220, 54);
   height: 50px;
   padding-top: 15px;
   font-weight: bold;

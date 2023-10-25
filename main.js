@@ -242,148 +242,215 @@ const pets = [
   ];
 
 
-const app = document.querySelector("#app")
+// *CODE PRE-REFACTOR*
+
+// const app = document.querySelector("#app")
 
   
-const renderToDom = (array) => {
+// const renderToDom = (array) => {
 
-    let domString = ""
+//     let domString = ""
 
-    for(object of array){
-      domString += `<div class="card" style="width: 18rem;">
-        <div class="card-header">${object.name}
-        </div>
-        <img src=${object.imageUrl} class="card-img-top" alt="..."> 
-        <div class="card-body"> 
-          <h5 class="card-title">${object.color}</h5>
-          <p class="card-text">${object.specialSkill}</p>
-        </div> 
-        <div class=${object.type} class="card-footer" >${object.type}
-        </div>
-        <a href="#" class="btn btn-outline-danger" id="delete--${object.id}">Delete</a>
-      </div>`
-    }
-    app.innerHTML = domString
-}
-renderToDom(pets)
-
-
-const dogButton = document.querySelector("#dog")
-const catButton = document.querySelector("#cat")
-const dinoButton = document.querySelector('#dino') 
-const petsButton = document.querySelector("#pets")
-const form = document.querySelector('form')
+//     for(object of array){
+//       domString += `<div class="card" style="width: 18rem;">
+//         <div class="card-header">${object.name}
+//         </div>
+//         <img src=${object.imageUrl} class="card-img-top" alt="..."> 
+//         <div class="card-body"> 
+//           <h5 class="card-title">${object.color}</h5>
+//           <p class="card-text">${object.specialSkill}</p>
+//         </div> 
+//         <div class=${object.type} class="card-footer" >${object.type}
+//         </div>
+//         <a href="#" class="btn btn-outline-danger" id="delete--${object.id}">Delete</a>
+//       </div>`
+//     }
+//     app.innerHTML = domString
+// }
+// renderToDom(pets)
 
 
-const filter1 = () => {
-    let dogArray = []
+// const dogButton = document.querySelector("#dog")
+// const catButton = document.querySelector("#cat")
+// const dinoButton = document.querySelector("#dino") 
+// const petsButton = document.querySelector("#pets")
+// const form = document.querySelector('form')
 
-    for (pet of pets){
-      if(pet.type === "Dog"){
-        dogArray.push(pet)
-      }
-    }
-    renderToDom(dogArray)
-  }
-
-
-const filter2 = () => {
-    let catArray = []
-
-    for(pet of pets){
-      if (pet.type === "Cat"){
-        catArray.push(pet)
-      }
-    }
-    renderToDom(catArray)
-  }
-
-
-const filter3 = () => {
-  let dinoArray = []
-
-  for(pet of pets){
-    if (pet.type === "Dino"){
-      dinoArray.push(pet)
-    }
-  }
-  renderToDom(dinoArray)
-}
-
-const filter4 = () => {
-   let petArray = []
-
-   for(pet of pets){
-     if (pet.type === "Dog" || "Cat" || "Dino"){
-      petArray.push(pet)
-    }
-  }
-  renderToDom(petArray)
-}
-
-
-const createPet = (e) => {
-    e.preventDefault()
-
-  const newPetObject ={
-     id: pets.length + 1,
-     name: document.querySelector('#petName').value,
-     color: document.querySelector('#petColor').value,
-     specialSkill: document.querySelector('#petSpecialSkill').value,
-     type: document.querySelector('#petType').value,
-    imageUrl: document.querySelector('#petImageUrl').value
-   }
-   pets.push(newPetObject)
-   renderToDom(pets)
-   form.reset()
-}
-
-const deletePet = (event) => {
-
-  if (event.target.id.includes("delete")){
-    
-    const [, id] = event.target.id.split("--")
-
-    const index = pets.findIndex(object => object.id === Number(id))
-
-    pets.splice(index, 1)
-
-    renderToDom(pets)
-  }
-}
-
-dogButton.addEventListener ('click', filter1)
-catButton.addEventListener ('click', filter2)
-dinoButton.addEventListener ('click', filter3)
-petsButton.addEventListener ('click', filter4)
-form.addEventListener ('submit', createPet)
-app.addEventListener("click", deletePet)
-
-
-
-// *Multi-button single filter function attempt
 
 // const filter1 = () => {
-//   let petArray = []
+//     let dogArray = []
 
-//   for(pet of pets){
-//     if (pet.type === "Dog"){
-//       petArray.push(pet)
-//     } else if (pet.type === "Cat"){
-//       petArray.push(pet)
-//     } else (pet.type === "Dino")
-//       petArray.push(pet)
+//     for (pet of pets){
+//       if(pet.type === "Dog"){
+//         dogArray.push(pet)
+//       }
 //     }
-//   renderToDom(petArray)
+//     renderToDom(dogArray)
 //   }
 
 
 // const filter2 = () => {
-//   let allArray = []
- 
-//   for (pet of pets){
-//   (pet.type === "Dog" ||"Cat" || "Dino")
-//       allArray.push(pet)
+//     let catArray = []
+
+//     for(pet of pets){
+//       if (pet.type === "Cat"){
+//         catArray.push(pet)
+//       }
 //     }
-//     renderToDom(allArray)
+//     renderToDom(catArray)
 //   }
+
+
+// const filter3 = () => {
+//   let dinoArray = []
+
+//   for(pet of pets){
+//     if (pet.type === "Dino"){
+//       dinoArray.push(pet)
+//     }
+//   }
+//   renderToDom(dinoArray)
+// }
+
+// const filter4 = () => {
+//    let petArray = []
+
+//    for(pet of pets){
+//      if (pet.type === "Dog" || "Cat" || "Dino"){
+//       petArray.push(pet)
+//     }
+//   }
+//   renderToDom(petArray)
+// }
+
+
+// const createPet = (e) => {
+//     e.preventDefault()
+
+//   const newPetObject ={
+//      id: pets.length + 1,
+//      name: document.querySelector('#petName').value,
+//      color: document.querySelector('#petColor').value,
+//      specialSkill: document.querySelector('#petSpecialSkill').value,
+//      type: document.querySelector('#petType').value,
+//     imageUrl: document.querySelector('#petImageUrl').value
+//    }
+//    pets.push(newPetObject)
+//    renderToDom(pets)
+//    form.reset()
+// }
+
+// const deletePet = (event) => {
+
+//   if (event.target.id.includes("delete")){
+    
+//     const [, id] = event.target.id.split("--")
+
+//     const index = pets.findIndex(object => object.id === Number(id))
+
+//     pets.splice(index, 1)
+
+//     renderToDom(pets)
+//   }
+// }
+
+// dogButton.addEventListener ('click', filter1)
+// catButton.addEventListener ('click', filter2)
+// dinoButton.addEventListener ('click', filter3)
+// petsButton.addEventListener ('click', filter4)
+// form.addEventListener ('submit', createPet)
+// app.addEventListener("click", deletePet)
+
+
+// *CODE POST-REFACTOR*
+
+const renderToDom = (array) => {
+
+    let domString = ""
+
+    for(pet of array){
+      domString += `<div class="card" style="width: 18rem;">
+        <div class="card-header">${pet.name}
+        </div>
+        <img src=${pet.imageUrl} class="card-img-top" alt="..."> 
+        <div class="card-body"> 
+          <h5 class="card-title">${pet.color}</h5>
+          <p class="card-text">${pet.specialSkill}</p>
+        </div> 
+        <div class=${pet.type} class="card-footer" >${pet.type}
+        </div>
+        <a href="#" class="btn btn-outline-danger" id="delete--${pet.id}">Delete</a>
+      </div>`
+    }
+    app.innerHTML = domString
+}
+
+
+const filter = (type) => {
+  const filteredArray = []
+  for(pet of pets){
+    if (pet.type === type){
+      filteredArray.push(pet)
+    }
+  }
+  renderToDom(filteredArray)
+}
+
+
+const events = () => {
+  const app = document.querySelector('#app')
+  const form = document.querySelector('form')
+  const filterButtons = document.querySelector('#filter-buttons')
+  
+  form.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    const newPetObject ={
+       id: pets.length + 1,
+       name: document.querySelector('#petName').value,
+       color: document.querySelector('#petColor').value,
+       specialSkill: document.querySelector('#petSpecialSkill').value,
+       type: document.querySelector('#petType').value,
+      imageUrl: document.querySelector('#petImageUrl').value
+     }
+     pets.push(newPetObject)
+     renderToDom(pets)
+     form.reset()
+  })
+
+
+  app.addEventListener('click', (event) => {
+    if (event.target.id.includes("delete")){
+    
+      const [, id] = event.target.id.split("--")
+  
+      const index = pets.findIndex(object => object.id === Number(id))
+  
+      pets.splice(index, 1)
+  
+      renderToDom(pets)
+    }
+  })
+
+
+  filterButtons.addEventListener("click", (event) => {
+    const id = event.target.id
+    const possibletypes = ["Dog", "Cat", "Dino"]
+
+    if(id === "Pets"){
+      renderToDom(pets)
+    } else if(possibletypes.includes(id)){
+      filter(id)
+    }
+  })
+  
+}
+
+
+const startApp = () => {
+  renderToDom(pets)
+  events()
+}
+
+
+startApp()
